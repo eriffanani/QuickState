@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="QuickState">
+        <attr name="android:padding"/>
+        <attr name="android:src"/>
+        <attr name="imageScale" format="enum">
+            <enum name="defaultScale" value="0"/>
+            <enum name="S1x1" value="1"/>
+            <enum name="S16x9" value="2"/>
+        </attr>
+        <attr name="imageWidth" format="dimension"/>
+        <attr name="android:title"/>
+        <attr name="android:titleTextColor"/>
+        <attr name="titleTextSize" format="dimension"/>
+        <attr name="android:subtitle"/>
+        <attr name="android:subtitleTextColor"/>
+        <attr name="subtitleTextSize" format="dimension"/>
+        <attr name="button" format="string"/>
+        <attr name="buttonType" format="enum">
+            <enum name="none" value="0"/>
+            <enum name="circle" value="1"/>
+        </attr>
+        <attr name="buttonIconColor" format="color"/>
+        <attr name="buttonBackgroundColor" format="color"/>
+    </declare-styleable>
+</resources>

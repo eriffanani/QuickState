@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="quick_state_parent_padding">20dp</dimen>
+    <dimen name="quick_state_image_margin_bottom">25dp</dimen>
+    <dimen name="quick_state_title_text_size">20sp</dimen>
+    <dimen name="quick_state_subtitle_text_size">15sp</dimen>
+    <dimen name="quick_state_subtitle_margin_top">10dp</dimen>
+    <dimen name="quick_state_button_margin_top">20dp</dimen>
+</resources>
