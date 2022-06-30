@@ -16,7 +16,6 @@
         android:text="Retry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:tag="empty"
         android:layout_marginTop="20dp"/>
 
 </com.erif.quickstate.QuickStateView>

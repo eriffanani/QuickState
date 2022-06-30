@@ -168,8 +168,8 @@ public class QuickState {
     private void setupButton(View view, int id) {
         View button = view.findViewById(id);
         if (button != null) {
-            String tag = button.getTag().toString();
             button.setOnClickListener(v -> {
+                Object getTag = button.getTag();
                 if (listener != null) {
                     int state = 0;
                     if (id == R.id.quickStateButtonSingle) {
@@ -183,6 +183,9 @@ public class QuickState {
                     } else if (id == R.id.quickStateButtonBottom) {
                         state = BUTTON_BOTTOM;
                     }
+                    String tag = null;
+                    if (getTag != null)
+                        tag = getTag.toString();
                     listener.onClickStateButton(stateView, state, tag);
                 }
             });
