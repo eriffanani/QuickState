@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <declare-styleable name="QuickStateView">
+
         <attr name="android:padding"/>
         <attr name="android:src"/>
         <attr name="imageScale" format="enum">
@@ -8,12 +10,18 @@
             <enum name="S1x1" value="1"/>
             <enum name="S16x9" value="2"/>
         </attr>
+
         <attr name="imageWidth" format="dimension"/>
         <attr name="android:title"/>
         <attr name="android:titleTextColor"/>
         <attr name="titleTextSize" format="dimension"/>
+        <attr name="titleFontFamily" format="reference"/>
+
         <attr name="android:subtitle"/>
         <attr name="android:subtitleTextColor"/>
         <attr name="subtitleTextSize" format="dimension"/>
+        <attr name="subtitleFontFamily" format="reference"/>
+
     </declare-styleable>
+
 </resources>

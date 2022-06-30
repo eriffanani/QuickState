@@ -8,6 +8,7 @@
     android:src="@mipmap/error_illustration"
     app:imageWidth="200dp"
     android:title="Empty"
+    app:subtitleFontFamily="@font/montserrat"
     android:subtitle="@string/message_example">
 
     <LinearLayout

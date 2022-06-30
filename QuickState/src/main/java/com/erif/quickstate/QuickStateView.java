@@ -21,6 +21,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 
 public class QuickStateView extends LinearLayout {
 
@@ -59,19 +60,21 @@ public class QuickStateView extends LinearLayout {
         setOrientation(LinearLayout.VERTICAL);
         setGravity(Gravity.CENTER);
         if (attrs != null) {
-            TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
+            TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs,
                     R.styleable.QuickStateView, 0, 0);
             try {
-                int parentPadding = a.getDimensionPixelSize(R.styleable.QuickStateView_android_padding, defaultPaddingSize);
-                illustration = a.getResourceId(R.styleable.QuickStateView_android_src, 0);
-                title = a.getString(R.styleable.QuickStateView_android_title);
-                int titleTextColor = a.getColor(R.styleable.QuickStateView_android_titleTextColor, Color.BLACK);
-                int titleTextSize = a.getDimensionPixelSize(R.styleable.QuickStateView_titleTextSize, getDimen(R.dimen.quick_state_title_text_size));
-                subtitle = a.getString(R.styleable.QuickStateView_android_subtitle);
-                int subtitleTextColor = a.getColor(R.styleable.QuickStateView_android_subtitleTextColor, Color.GRAY);
-                int subtitleTextSize = a.getDimensionPixelSize(R.styleable.QuickStateView_subtitleTextSize, getDimen(R.dimen.quick_state_subtitle_text_size));
-                int imgScale = a.getInt(R.styleable.QuickStateView_imageScale, 0);
-                int imgWidth = a.getDimensionPixelSize(R.styleable.QuickStateView_imageWidth, 0);
+                int parentPadding = typedArray.getDimensionPixelSize(R.styleable.QuickStateView_android_padding, defaultPaddingSize);
+                illustration = typedArray.getResourceId(R.styleable.QuickStateView_android_src, 0);
+                title = typedArray.getString(R.styleable.QuickStateView_android_title);
+                int titleTextColor = typedArray.getColor(R.styleable.QuickStateView_android_titleTextColor, Color.BLACK);
+                int titleTextSize = typedArray.getDimensionPixelSize(R.styleable.QuickStateView_titleTextSize, getDimen(R.dimen.quick_state_title_text_size));
+                subtitle = typedArray.getString(R.styleable.QuickStateView_android_subtitle);
+                int subtitleTextColor = typedArray.getColor(R.styleable.QuickStateView_android_subtitleTextColor, Color.GRAY);
+                int subtitleTextSize = typedArray.getDimensionPixelSize(R.styleable.QuickStateView_subtitleTextSize, getDimen(R.dimen.quick_state_subtitle_text_size));
+                int imgScale = typedArray.getInt(R.styleable.QuickStateView_imageScale, 0);
+                int imgWidth = typedArray.getDimensionPixelSize(R.styleable.QuickStateView_imageWidth, 0);
+                int titleFont = typedArray.getResourceId(R.styleable.QuickStateView_titleFontFamily, 0);
+                int subtitleFont = typedArray.getResourceId(R.styleable.QuickStateView_subtitleFontFamily, 0);
 
                 setPadding(parentPadding, parentPadding, parentPadding, parentPadding);
 
@@ -115,7 +118,12 @@ public class QuickStateView extends LinearLayout {
                     txtTitle.setId(R.id.quickStateTextViewTitle);
                     txtTitle.setText(title);
                     txtTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
-                    txtTitle.setTypeface(null, Typeface.BOLD);
+                    if (titleFont != 0) {
+                        Typeface titleFace = getFont(titleFont);
+                        txtTitle.setTypeface(titleFace, Typeface.BOLD);
+                    } else {
+                        txtTitle.setTypeface(null, Typeface.BOLD);
+                    }
                     txtTitle.setGravity(Gravity.CENTER_HORIZONTAL);
                     txtTitle.setTextColor(titleTextColor);
                     LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -126,6 +134,10 @@ public class QuickStateView extends LinearLayout {
                     txtSubtitle = new TextView(getContext());
                     txtSubtitle.setId(R.id.quickStateTextViewSubtitle);
                     txtSubtitle.setText(subtitle);
+                    if (subtitleFont != 0) {
+                        Typeface subtitleFace = getFont(subtitleFont);
+                        txtSubtitle.setTypeface(subtitleFace, Typeface.NORMAL);
+                    }
                     txtSubtitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, subtitleTextSize);
                     txtSubtitle.setGravity(Gravity.CENTER_HORIZONTAL);
                     txtSubtitle.setTextColor(subtitleTextColor);
@@ -136,7 +148,7 @@ public class QuickStateView extends LinearLayout {
                     addView(txtSubtitle);
                 }
             } finally {
-                a.recycle();
+                typedArray.recycle();
             }
         }
         /*if (attrs != null) {
@@ -363,6 +375,19 @@ public class QuickStateView extends LinearLayout {
             log("Anim res not found");
         }
         return anim;
+    }
+
+    private Typeface getFont(int fontRes) {
+        Typeface typeface = null;
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+                typeface = getContext().getResources().getFont(fontRes);
+            else
+                typeface = ResourcesCompat.getFont(getContext(), fontRes);
+        } catch (Resources.NotFoundException e) {
+            log("Font resource not found");
+        }
+        return typeface;
     }
 
 }
