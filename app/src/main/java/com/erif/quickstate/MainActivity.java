@@ -1,46 +1,37 @@
 package com.erif.quickstate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private QuickState quickState;
-    private LinearLayout loadingLayout;
+    private QuickState state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadingLayout = findViewById(R.id.loadingLayout);
-        quickState = findViewById(R.id.act_main_quick_state);
-        setupState();
+        CoordinatorLayout parentView = findViewById(R.id.act_main_parentLayout);
+        state = new QuickState(parentView, true);
+        LinearLayout contentLoader = findViewById(R.id.loadingLayout);
         loadingProcess();
-
-    }
-
-    private void setupState() {
-        //quickState.setLoadingView(loadingLayout);
-        /*quickState.setAnimationOnShow(
-                QuickState.getAnim(this, R.anim.alpha_in),
-                QuickState.getAnim(this, R.anim.alpha_out)
-        );*/
-        quickState.setStateListener(new QuickStateListener() {
-            @Override
-            public void onClickButton() {
-
+        state.contentLoader(contentLoader);
+        state.onClickListener((stateView, buttonState, tag) -> {
+            if (buttonState == QuickState.BUTTON_RIGHT) {
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                startActivity(intent);
             }
         });
     }
 
     private void loadingProcess() {
         Handler handler = new Handler();
-        Runnable run = () -> quickState.show();
+        Runnable run = () -> state.show(ConstantState.EMPTY);
         handler.postDelayed(run, 1500);
     }
 

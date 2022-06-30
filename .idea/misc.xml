@@ -9,6 +9,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2824074074074074" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.2824074074074074" />
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.2824074074074074" />
+        <entry key="app/src/main/res/layout/state_empty.xml" value="0.2753846153846154" />
+        <entry key="app/src/main/res/layout/state_internet_problem.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/state_problem.xml" value="0.2753846153846154" />
       </map>
     </option>
   </component>

@@ -1,48 +1,59 @@
 package com.erif.quickstate;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
-public class MainActivity2 extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 
-    private NestedScrollView nestedScrollView;
+public class MainActivity2 extends AppCompatActivity implements QuickState.OnClickListener {
+
+    private NestedScrollView contentLoader;
+    private QuickState state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        nestedScrollView = findViewById(R.id.loadingLayout2);
+        CoordinatorLayout parentLayout = findViewById(R.id.parentView);
+        contentLoader = findViewById(R.id.loadingLayout2);
+        state = new QuickState(parentLayout, true);
+        state.contentLoader(contentLoader);
+        state.onClickListener(this);
+        requestIllustration();
+    }
+
+    private void requestIllustration() {
         blinkLoading();
-
-        QuickState quickState = findViewById(R.id.quickState2);
-        quickState.setLoadingView(nestedScrollView);
-        quickState.setAnimationOnShow(
-                QuickState.getAnim(this, R.anim.alpha_in),
-                QuickState.getAnim(this, R.anim.alpha_out)
-        );
         Handler handler = new Handler();
-        Runnable runnable = quickState::show;
+        Runnable runnable = () -> state.show(ConstantState.INTERNET);
         handler.postDelayed(runnable, 1700);
-
-        Computer computer = new Computer.ComputerBuilder("", "").build();
-        Computer.ComputerBuilder builder = new Computer.ComputerBuilder();
-        builder.setGraphicsCardEnabled(false);
-        Computer c = builder.build();
-
     }
 
     private void blinkLoading() {
-        Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        Animation anim = new AlphaAnimation(0.4f, 1.0f);
         anim.setDuration(500); //You can manage the blinking time with this parameter
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
-        nestedScrollView.startAnimation(anim);
+        contentLoader.startAnimation(anim);
     }
 
+    @Override
+    public void onClickStateButton(QuickStateView stateView, int buttonState, String tag) {
+        switch (buttonState) {
+            case QuickState.BUTTON_LEFT:
+                finish();
+                break;
+            case QuickState.BUTTON_RIGHT:
+                state.hideAndShowLoader();
+                // Delay
+                Handler handler = new Handler();
+                Runnable runnable = this::requestIllustration;
+                handler.postDelayed(runnable, 500);
+                break;
+        }
+    }
 }

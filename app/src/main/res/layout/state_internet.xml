@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.erif.quickstate.QuickStateView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/quickState2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:src="@mipmap/error_illustration"
+    app:imageWidth="200dp"
+    android:visibility="gone"
+    android:title="Internet"
+    android:subtitle="@string/message_example">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@id/quickStateButtonLeft"
+            android:text="Left"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="internet"
+            android:layout_marginTop="20dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.7"/>
+
+        <Button
+            android:id="@id/quickStateButtonRight"
+            android:text="Right"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="internet"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+
+</com.erif.quickstate.QuickStateView>

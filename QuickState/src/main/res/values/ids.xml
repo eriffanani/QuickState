@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="quickStateImageIllustration" type="id"/>
+    <item name="quickStateTextViewTitle" type="id"/>
+    <item name="quickStateTextViewSubtitle" type="id"/>
+
+    <item name="quickStateButtonSingle" type="id"/>
+    <item name="quickStateButtonLeft" type="id"/>
+    <item name="quickStateButtonTop" type="id"/>
+    <item name="quickStateButtonRight" type="id"/>
+    <item name="quickStateButtonBottom" type="id"/>
+</resources>
