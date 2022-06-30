@@ -4,12 +4,15 @@
     <declare-styleable name="QuickStateView">
 
         <attr name="android:padding"/>
+
         <attr name="android:src"/>
+        <attr name="srcLayout" format="reference"/>
         <attr name="imageScale" format="enum">
             <enum name="defaultScale" value="0"/>
             <enum name="S1x1" value="1"/>
             <enum name="S16x9" value="2"/>
         </attr>
+        <attr name="avdRepeat" format="boolean"/>
 
         <attr name="imageWidth" format="dimension"/>
         <attr name="android:title"/>

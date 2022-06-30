@@ -19,10 +19,11 @@ public class MainActivity extends AppCompatActivity {
         CoordinatorLayout parentView = findViewById(R.id.act_main_parentLayout);
         state = new QuickState(parentView, true);
         LinearLayout contentLoader = findViewById(R.id.loadingLayout);
+
         loadingProcess();
         state.contentLoader(contentLoader);
         state.onClickListener((stateView, buttonState, tag) -> {
-            if (buttonState == QuickState.BUTTON_RIGHT) {
+            if (buttonState == QuickState.BUTTON_SINGLE) {
                 Intent intent = new Intent(MainActivity.this, MainActivity2.class);
                 startActivity(intent);
             }

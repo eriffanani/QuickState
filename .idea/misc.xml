@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="QuickState/src/main/res/layout/frg_quick_state.xml" value="0.2824074074074074" />
+        <entry key="app/src/main/res/drawable/avd_withdraw_failed.xml" value="0.1615" />
         <entry key="app/src/main/res/drawable/circle_shape.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/text_shape.xml" value="0.1605" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2824074074074074" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.2824074074074074" />
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.2824074074074074" />
+        <entry key="app/src/main/res/layout/lottie_empty.xml" value="0.2753846153846154" />
         <entry key="app/src/main/res/layout/state_empty.xml" value="0.2753846153846154" />
         <entry key="app/src/main/res/layout/state_internet_problem.xml" value="0.25" />
         <entry key="app/src/main/res/layout/state_problem.xml" value="0.2753846153846154" />

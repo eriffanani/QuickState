@@ -5,11 +5,14 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,17 +21,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 public class QuickStateView extends LinearLayout {
 
+    @DrawableRes
     private int illustration = 0;
-
+    private boolean avdRepeat = false;
     private String title;
-
     private String subtitle;
 
     private ImageView imgIllustration;
@@ -37,6 +43,9 @@ public class QuickStateView extends LinearLayout {
 
     private View contentView;
     private View contentLoader;
+    @LayoutRes
+    private int customIllustration;
+    private View customIllustrationView;
 
     private boolean useAnimation = false;
 
@@ -65,6 +74,7 @@ public class QuickStateView extends LinearLayout {
             try {
                 int parentPadding = typedArray.getDimensionPixelSize(R.styleable.QuickStateView_android_padding, defaultPaddingSize);
                 illustration = typedArray.getResourceId(R.styleable.QuickStateView_android_src, 0);
+                avdRepeat = typedArray.getBoolean(R.styleable.QuickStateView_avdRepeat, false);
                 title = typedArray.getString(R.styleable.QuickStateView_android_title);
                 int titleTextColor = typedArray.getColor(R.styleable.QuickStateView_android_titleTextColor, Color.BLACK);
                 int titleTextSize = typedArray.getDimensionPixelSize(R.styleable.QuickStateView_titleTextSize, getDimen(R.dimen.quick_state_title_text_size));
@@ -75,10 +85,13 @@ public class QuickStateView extends LinearLayout {
                 int imgWidth = typedArray.getDimensionPixelSize(R.styleable.QuickStateView_imageWidth, 0);
                 int titleFont = typedArray.getResourceId(R.styleable.QuickStateView_titleFontFamily, 0);
                 int subtitleFont = typedArray.getResourceId(R.styleable.QuickStateView_subtitleFontFamily, 0);
+                customIllustration = typedArray.getResourceId(R.styleable.QuickStateView_srcLayout, 0);
 
                 setPadding(parentPadding, parentPadding, parentPadding, parentPadding);
 
-                if (illustration != 0) {
+                if (customIllustration != 0) {
+                    createCustomIllustration();
+                } else if (illustration != 0) {
                     imgIllustration = new ImageView(getContext());
                     imgIllustration.setId(R.id.quickStateImageIllustration);
                     imgIllustration.setImageResource(illustration);
@@ -258,6 +271,10 @@ public class QuickStateView extends LinearLayout {
         return txtSubtitle;
     }
 
+    public View getCustomIllustration() {
+        return customIllustrationView;
+    }
+
     public void showWithAnim() {
         Animation animState = getAnim(R.anim.anim_quick_state_parent_alpha_in);
         setVisibility(VISIBLE);
@@ -308,6 +325,7 @@ public class QuickStateView extends LinearLayout {
     }
 
     public void show() {
+        checkAvd();
         if (useAnimation) {
             showWithAnim();
         } else {
@@ -316,6 +334,47 @@ public class QuickStateView extends LinearLayout {
                 contentView.setVisibility(View.GONE);
             if (contentLoader != null)
                 contentLoader.setVisibility(View.GONE);
+        }
+    }
+
+    private void checkAvd() {
+        if (imgIllustration != null) {
+            Drawable drawable = imgIllustration.getDrawable();
+            if (drawable != null) {
+                if (drawable instanceof Animatable) {
+                    AnimatedVectorDrawableCompat avd = AnimatedVectorDrawableCompat.create(
+                            getContext(), illustration
+                    );
+                    if (avd != null) {
+                        avd.registerAnimationCallback(new Animatable2Compat.AnimationCallback() {
+                            @Override
+                            public void onAnimationEnd(Drawable drawable) {
+                                if (avdRepeat)
+                                    avd.start();
+                            }
+                        });
+                        imgIllustration.setImageDrawable(avd);
+                        avd.start();
+                    }
+                }
+            }
+        }
+    }
+
+    private void createCustomIllustration() {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        if (customIllustration != 0) {
+            try {
+                getContext().getResources().getLayout(customIllustration);
+                customIllustrationView = inflater.inflate(customIllustration, null, false);
+                LinearLayout.LayoutParams params = new LayoutParams(
+                        LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT
+                );
+                customIllustrationView.setLayoutParams(params);
+                addView(customIllustrationView);
+            } catch (Resources.NotFoundException e) {
+                log("Custom Illustration layout not found");
+            }
         }
     }
 
