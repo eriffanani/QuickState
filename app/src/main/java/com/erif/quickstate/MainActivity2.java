@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.widget.NestedScrollView;
 
+import java.util.Random;
+
 public class MainActivity2 extends AppCompatActivity implements QuickState.OnClickListener {
 
     private NestedScrollView contentLoader;
@@ -29,8 +31,8 @@ public class MainActivity2 extends AppCompatActivity implements QuickState.OnCli
     private void requestIllustration() {
         blinkLoading();
         Handler handler = new Handler();
-        Runnable runnable = () -> state.show(ConstantState.INTERNET);
-        handler.postDelayed(runnable, 1700);
+        Runnable runnable = () -> state.show(getRandomState());
+        handler.postDelayed(runnable, 1500);
     }
 
     private void blinkLoading() {
@@ -56,4 +58,17 @@ public class MainActivity2 extends AppCompatActivity implements QuickState.OnCli
                 break;
         }
     }
+
+    private String getRandomState() {
+        String[] arr = new String[]{
+                ConstantState.NETWORK, ConstantState.INTERNAL
+        };
+        return arr[random()];
+    }
+
+    private int random() {
+        Random rand = new Random();
+        return rand.nextInt(2);
+    }
+
 }

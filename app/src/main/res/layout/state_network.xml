@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.erif.quickstate.QuickStateView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/quickState2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:src="@mipmap/error_illustration"
+    android:clipToPadding="false"
+    app:imageWidth="200dp"
+    android:title="Internet"
+    android:subtitle="@string/message_example">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:clipToPadding="false"
+        android:paddingBottom="5dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp">
+
+        <Button
+            android:id="@id/quickStateButtonLeft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Left"
+            android:tag="internet" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1.7"/>
+
+        <RelativeLayout
+            android:id="@id/quickStateButtonRight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button"
+            android:tag="internet"
+            android:elevation="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="RIGHT"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:includeFontPadding="false"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</com.erif.quickstate.QuickStateView>

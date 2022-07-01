@@ -1,6 +1,5 @@
 package com.erif.quickstate;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -28,6 +27,7 @@ public class QuickState {
     private Context context;
     private SharedPreferences sp;
     private boolean enableAnimation = false;
+    private View viewState;
 
     public static final int BUTTON_SINGLE = 1;
     public static final int BUTTON_LEFT = 2;
@@ -85,33 +85,60 @@ public class QuickState {
     }
 
     public void show(@NonNull String name) {
-        this.currentState = name;
+        if (currentState == null) {
+            this.currentState = name;
+            createState(name);
+        } else {
+            if (!currentState.equals(name)) {
+                this.currentState = name;
+                if (parentLayout instanceof RelativeLayout) {
+                    RelativeLayout relative = (RelativeLayout) parentLayout;
+                    relative.removeView(viewState);
+                } else if (parentLayout instanceof ConstraintLayout) {
+                    ConstraintLayout constraint = (ConstraintLayout) parentLayout;
+                    constraint.removeView(viewState);
+                } else if (parentLayout instanceof CoordinatorLayout) {
+                    CoordinatorLayout coordinator = (CoordinatorLayout) parentLayout;
+                    coordinator.removeView(viewState);
+                } else if (parentLayout instanceof FrameLayout) {
+                    FrameLayout frame = (FrameLayout) parentLayout;
+                    frame.removeView(viewState);
+                }
+                createState(name);
+            } else {
+                stateView.show();
+            }
+        }
+    }
+
+    private void createState(String name) {
         int layout = sp.getInt(name, 0);
         try {
             context.getResources().getLayout(layout);
-            ViewGroup viewGroup = (ViewGroup) ((Activity) context).getWindow().getDecorView().getRootView();
-            View view = inflater.inflate(layout, viewGroup, false);
-            if (view instanceof QuickStateView)
-                stateView = (QuickStateView) view;
-            setupButton(view, R.id.quickStateButtonSingle);
-            setupButton(view, R.id.quickStateButtonLeft);
-            setupButton(view, R.id.quickStateButtonTop);
-            setupButton(view, R.id.quickStateButtonRight);
-            setupButton(view, R.id.quickStateButtonBottom);
+            ViewGroup viewGroup = (ViewGroup) parentLayout.getRootView();
+            viewState = inflater.inflate(layout, viewGroup, false);
+            viewState.setId(R.id.quickStateContainer);
+            if (viewState instanceof QuickStateView)
+                stateView = (QuickStateView) viewState;
+            setupButton(viewState, R.id.quickStateButtonSingle);
+            setupButton(viewState, R.id.quickStateButtonLeft);
+            setupButton(viewState, R.id.quickStateButtonTop);
+            setupButton(viewState, R.id.quickStateButtonRight);
+            setupButton(viewState, R.id.quickStateButtonBottom);
 
             if (stateView != null) {
                 if (parentLayout instanceof RelativeLayout) {
-                    relative().removeView(view);
-                    relative().addView(view, 0);
+                    RelativeLayout relative = (RelativeLayout) parentLayout;
+                    relative.addView(viewState, 0);
                 } else if (parentLayout instanceof ConstraintLayout) {
-                    constraint().removeView(view);
-                    constraint().addView(view, 0);
+                    ConstraintLayout constraint = (ConstraintLayout) parentLayout;
+                    constraint.addView(viewState, 0);
                 } else if (parentLayout instanceof CoordinatorLayout) {
-                    coordinator().removeView(view);
-                    coordinator().addView(view, 0);
+                    CoordinatorLayout coordinator = (CoordinatorLayout) parentLayout;
+                    coordinator.addView(viewState, 0);
                 } else if (parentLayout instanceof FrameLayout) {
-                    frame().removeView(view);
-                    frame().addView(view, 0);
+                    FrameLayout frame = (FrameLayout) parentLayout;
+                    frame.addView(viewState, 0);
                 }
                 if (contentLoader != null)
                     stateView.contentLoader(contentLoader);
@@ -147,22 +174,6 @@ public class QuickState {
 
     public String currentState() {
         return currentState;
-    }
-
-    private RelativeLayout relative() {
-        return ((RelativeLayout) parentLayout);
-    }
-
-    private ConstraintLayout constraint() {
-        return ((ConstraintLayout) parentLayout);
-    }
-
-    private CoordinatorLayout coordinator() {
-        return ((CoordinatorLayout) parentLayout);
-    }
-
-    private FrameLayout frame() {
-        return ((FrameLayout) parentLayout);
     }
 
     private void setupButton(View view, int id) {
