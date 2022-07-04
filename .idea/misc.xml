@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/state_internal_server.xml" value="0.2824074074074074" />
         <entry key="app/src/main/res/layout/state_internet.xml" value="0.2824074074074074" />
         <entry key="app/src/main/res/layout/state_internet_problem.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/state_network.xml" value="0.2824074074074074" />
         <entry key="app/src/main/res/layout/state_problem.xml" value="0.2753846153846154" />
       </map>
     </option>

@@ -151,12 +151,12 @@ public class QuickState {
     }
 
     public void hide() {
-        if (stateView != null)
+        if (stateView != null && stateView.getVisibility() == View.VISIBLE)
             stateView.hide();
     }
 
     public void hideAndShowLoader() {
-        if (stateView != null)
+        if (stateView != null && stateView.getVisibility() == View.VISIBLE)
             stateView.hideAndShowLoader();
     }
 
