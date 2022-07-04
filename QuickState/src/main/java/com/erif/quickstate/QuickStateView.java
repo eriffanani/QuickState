@@ -276,52 +276,54 @@ public class QuickStateView extends LinearLayout {
     }
 
     public void showWithAnim() {
-        Animation animState = getAnim(R.anim.anim_quick_state_parent_alpha_in);
-        setVisibility(VISIBLE);
-        animState.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-                if (contentView != null && contentView.getVisibility() == VISIBLE) {
-                    contentView.clearAnimation();
-                    Animation animContent = getAnim(R.anim.anim_quick_state_content_alpha_out);
-                    if (contentView != null && animContent != null) {
-                        animContent.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) { }
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                contentView.setVisibility(GONE);
-                            }
-                            @Override
-                            public void onAnimationRepeat(Animation animation) { }
-                        });
-                        contentView.startAnimation(animContent);
+        if (getVisibility() != VISIBLE) {
+            Animation animState = getAnim(R.anim.anim_quick_state_parent_alpha_in);
+            setVisibility(VISIBLE);
+            animState.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    if (contentView != null && contentView.getVisibility() == VISIBLE) {
+                        contentView.clearAnimation();
+                        Animation animContent = getAnim(R.anim.anim_quick_state_content_alpha_out);
+                        if (contentView != null && animContent != null) {
+                            animContent.setAnimationListener(new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) { }
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    contentView.setVisibility(GONE);
+                                }
+                                @Override
+                                public void onAnimationRepeat(Animation animation) { }
+                            });
+                            contentView.startAnimation(animContent);
+                        }
+                    }
+                    if (contentLoader != null && contentLoader.getVisibility() == VISIBLE) {
+                        contentLoader.clearAnimation();
+                        Animation animLoader = getAnim(R.anim.anim_quick_state_content_alpha_out);
+                        if (contentLoader != null && animLoader != null) {
+                            animLoader.setAnimationListener(new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) { }
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    contentLoader.setVisibility(GONE);
+                                }
+                                @Override
+                                public void onAnimationRepeat(Animation animation) { }
+                            });
+                            contentLoader.startAnimation(animLoader);
+                        }
                     }
                 }
-                if (contentLoader != null && contentLoader.getVisibility() == VISIBLE) {
-                    contentLoader.clearAnimation();
-                    Animation animLoader = getAnim(R.anim.anim_quick_state_content_alpha_out);
-                    if (contentLoader != null && animLoader != null) {
-                        animLoader.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) { }
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                contentLoader.setVisibility(GONE);
-                            }
-                            @Override
-                            public void onAnimationRepeat(Animation animation) { }
-                        });
-                        contentLoader.startAnimation(animLoader);
-                    }
-                }
-            }
-            @Override
-            public void onAnimationEnd(Animation animation) { }
-            @Override
-            public void onAnimationRepeat(Animation animation) {}
-        });
-        startAnimation(animState);
+                @Override
+                public void onAnimationEnd(Animation animation) { }
+                @Override
+                public void onAnimationRepeat(Animation animation) {}
+            });
+            startAnimation(animState);
+        }
     }
 
     public void show() {
@@ -397,25 +399,27 @@ public class QuickStateView extends LinearLayout {
     }
 
     private void hideWithAnim(boolean withLoader) {
-        Animation anim = getAnim(R.anim.anim_quick_state_parent_alpha_out);
-        anim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {}
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                setVisibility(GONE);
-                if (withLoader) {
-                    if (contentLoader != null && contentLoader.getVisibility() != VISIBLE) {
-                        contentLoader.setVisibility(VISIBLE);
-                        Animation animLoader = getAnim(R.anim.anim_quick_state_content_alpha_in);
-                        contentLoader.startAnimation(animLoader);
+        if (getVisibility() == VISIBLE) {
+            Animation anim = getAnim(R.anim.anim_quick_state_parent_alpha_out);
+            anim.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {}
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    setVisibility(GONE);
+                    if (withLoader) {
+                        if (contentLoader != null && contentLoader.getVisibility() != VISIBLE) {
+                            contentLoader.setVisibility(VISIBLE);
+                            Animation animLoader = getAnim(R.anim.anim_quick_state_content_alpha_in);
+                            contentLoader.startAnimation(animLoader);
+                        }
                     }
                 }
-            }
-            @Override
-            public void onAnimationRepeat(Animation animation) {}
-        });
-        startAnimation(anim);
+                @Override
+                public void onAnimationRepeat(Animation animation) {}
+            });
+            startAnimation(anim);
+        }
     }
 
     private int getDimen(int id) {
