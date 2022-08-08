@@ -9,7 +9,7 @@ maven { url 'https://jitpack.io' }
 
 #### dependencies
 ```gradle
-implementation 'com.github.eriffanani:QuickState:1.3.7'
+implementation 'com.github.eriffanani:QuickState:1.4.5'
 ```
 ### Licence
 ```license
