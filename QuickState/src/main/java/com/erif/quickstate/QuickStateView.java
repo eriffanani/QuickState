@@ -14,8 +14,8 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -213,15 +213,17 @@ public class QuickStateView extends LinearLayout {
     }
 
     public void showWithAnim() {
-        Animation animState = getAnim(R.anim.anim_quick_state_parent_alpha_in);
+        Animation animState = new AlphaAnimation(0f, 1f);
+        animState.setDuration(500);
         setVisibility(VISIBLE);
         animState.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
                 if (contentView != null && contentView.getVisibility() == VISIBLE) {
                     contentView.clearAnimation();
-                    Animation animContent = getAnim(R.anim.anim_quick_state_content_alpha_out);
-                    if (contentView != null && animContent != null) {
+                    Animation animContent = new AlphaAnimation(1f, 0f);
+                    animContent.setDuration(400);
+                    if (contentView != null) {
                         animContent.setAnimationListener(new Animation.AnimationListener() {
                             @Override
                             public void onAnimationStart(Animation animation) { }
@@ -237,8 +239,9 @@ public class QuickStateView extends LinearLayout {
                 }
                 if (contentLoader != null && contentLoader.getVisibility() == VISIBLE) {
                     contentLoader.clearAnimation();
-                    Animation animLoader = getAnim(R.anim.anim_quick_state_content_alpha_out);
-                    if (contentLoader != null && animLoader != null) {
+                    Animation animLoader = new AlphaAnimation(1f, 0f);
+                    animLoader.setDuration(400);
+                    if (contentLoader != null) {
                         animLoader.setAnimationListener(new Animation.AnimationListener() {
                             @Override
                             public void onAnimationStart(Animation animation) { }
@@ -335,7 +338,8 @@ public class QuickStateView extends LinearLayout {
 
     private void hideWithAnim(boolean withLoader) {
         if (getVisibility() == VISIBLE) {
-            Animation anim = getAnim(R.anim.anim_quick_state_parent_alpha_out);
+            Animation anim = new AlphaAnimation(1f, 0f);
+            anim.setDuration(250);
             anim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {}
@@ -345,7 +349,8 @@ public class QuickStateView extends LinearLayout {
                     if (withLoader) {
                         if (contentLoader != null && contentLoader.getVisibility() != VISIBLE) {
                             contentLoader.setVisibility(VISIBLE);
-                            Animation animLoader = getAnim(R.anim.anim_quick_state_content_alpha_in);
+                            Animation animLoader = new AlphaAnimation(0f, 1f);
+                            animLoader.setDuration(500);
                             contentLoader.startAnimation(animLoader);
                         }
                     }
@@ -363,16 +368,6 @@ public class QuickStateView extends LinearLayout {
 
     private void log(String message) {
         Log.d("QuickState", message);
-    }
-
-    private Animation getAnim(int id) {
-        Animation anim = null;
-        try {
-            anim = AnimationUtils.loadAnimation(getContext(), id);
-        } catch (Resources.NotFoundException e) {
-            log("Anim res not found");
-        }
-        return anim;
     }
 
     private Typeface getFont(int fontRes) {
