@@ -1,5 +1,5 @@
 # QuickState
-Create and display your state quickly and easily with easy customization.
+Create and display your state quickly and easily with easy customization. This library can be used in both Java and Kotlin.
 
 ## Installation
 #### repositories
@@ -19,7 +19,7 @@ Create your layout for showing the state. Example: state_error.xml
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:src="@mipmap/error_illustration"
     app:imageWidth="200dp"
     android:title="Internal Server Error"
@@ -58,10 +58,117 @@ public class MyApplication extends Application {
 ```
 
 #### Apply the state
-```java
-QuickState state = new QuickState(parentView);
-state.show(StateName.ERROR);
+activity_main.xml
+```xml
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <ChildView/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
+MainActivity
+```java
+CoordinatorLayout parentView = findViewById(R.id.parentView);
+
+// Default
+QuickState state = new QuickState(parentView);
+// Enable Fade Animation
+QuickState state = new QuickState(parentView, true);
+
+// Set content loader for automatically hide loading view when state is showing
+ProgressBar pb = findViewById(R.id.progress);
+state.contentLoader(pb);
+
+// Show Loading ...
+showLoading();
+// Loading Finish
+if(false) {
+    state.show(StateName.ERROR);
+} else {
+    // Continue task
+}
+```
+
+#### Output
+<img width="300px" src="https://user-images.githubusercontent.com/26743731/197487875-df442119-c738-437d-971d-27550dd60bc1.gif"/>
+
+#### Add Button
+Id for button 
+- quickStateButtonSingle
+- quickStateButtonLeft
+- quickStateButtonTop
+- quickStateButtonRight
+- quickStateButtonBottom
+```xml
+<com.erif.quickstate.QuickStateView>
+    <!-- Custom Your Button Layout Here -->
+    <YourButton
+        android:id="@id/quickStateButtonSingle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retry"/>
+<com.erif.quickstate.QuickStateView>
+```
+
+Main Activity
+```java
+state.onClickListener((stateView, buttonState, tag) -> {
+    if (buttonState == QuickState.BUTTON_SINGLE) {
+        // TODO ACTION
+    }
+});
+```
+<img width="300px" src="https://user-images.githubusercontent.com/26743731/197492840-757699b6-cb12-4984-9b79-9bd3cb9a2a89.gif"/>
+
+#### Finish
+You can repeat the steps from the beginning to create a new state.
+
+#### All Quick State View Properties
+* For image when you designed in layout xml like lottie libraries
+```xml
+<com.erif.quickstate.QuickStateView
+    app:srcLayout="@layout/lottie_error">
+</com.erif.quickstate.QuickStateView>
+```
+
+* Change image scale
+```xml
+<com.erif.quickstate.QuickStateView
+    app:imageScale="S1x1">
+</com.erif.quickstate.QuickStateView>
+```
+
+* When using Animated Vector Drawable
+```xml
+<com.erif.quickstate.QuickStateView
+    app:avdRepeat="true">
+</com.erif.quickstate.QuickStateView>
+```
+
+* Title Styling
+```xml
+<com.erif.quickstate.QuickStateView
+    android:titleTextColor="@color/colorBlack"
+    app:titleTextSize="18sp"
+    app:titleFontFamily="@font/my_font">
+</com.erif.quickstate.QuickStateView>
+```
+
+* Subtitle Styling
+```xml
+<com.erif.quickstate.QuickStateView
+    android:subtitleTextColor="@color/colorBlack"
+    app:subtitleTextSize="18sp"
+    app:subtitleFontFamily="@font/my_font">
+</com.erif.quickstate.QuickStateView>
+```
+
+#### Information
+This library is still being developed further, please provide feedback if you find a bug. Thank you
 
 ### Licence
 ```license
