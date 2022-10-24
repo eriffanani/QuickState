@@ -1,5 +1,5 @@
 # QuickState
-Create and display your state quickly and easily with easy customization. This library can be used in both Java and Kotlin.
+Show your state (internal error, network error, empty data, etc) quickly and easily with easy customization. This library can be used in both Java and Kotlin.
 
 ## Installation
 #### repositories
@@ -97,7 +97,7 @@ if(false) {
 <img width="300px" src="https://user-images.githubusercontent.com/26743731/197487875-df442119-c738-437d-971d-27550dd60bc1.gif"/>
 
 #### Add Button
-Id for button 
+Use @id instead of @+id for button state, below is the id that you can use 
 - quickStateButtonSingle
 - quickStateButtonLeft
 - quickStateButtonTop
@@ -114,7 +114,7 @@ Id for button
 <com.erif.quickstate.QuickStateView>
 ```
 
-Main Activity
+Button Click Listener
 ```java
 state.onClickListener((stateView, buttonState, tag) -> {
     if (buttonState == QuickState.BUTTON_SINGLE) {
@@ -125,7 +125,7 @@ state.onClickListener((stateView, buttonState, tag) -> {
 <img width="300px" src="https://user-images.githubusercontent.com/26743731/197492840-757699b6-cb12-4984-9b79-9bd3cb9a2a89.gif"/>
 
 #### Finish
-You can repeat the steps from the beginning to create a new state.
+You can repeat the steps from the beginning to create a new state. You can use it on any activity without having to repeat the tiring steps.
 
 #### All Quick State View Properties
 * For image when you designed in layout xml like lottie libraries
