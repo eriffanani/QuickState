@@ -1,4 +1,4 @@
-package com.erif.quickstates
+package com.erif.quickstates.examples
 
 import android.os.Bundle
 import android.view.animation.AlphaAnimation
@@ -6,6 +6,9 @@ import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.NestedScrollView
+import com.erif.quickstates.QuickState
+import com.erif.quickstates.QuickStateView
+import com.erif.quickstates.R
 import com.erif.quickstates.helper.Constant
 import com.erif.quickstates.helper.Delay
 import java.util.Random

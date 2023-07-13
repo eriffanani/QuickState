@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/parentView"
-    tools:context=".MainActivity2">
+    tools:context=".examples.MainActivity2">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/loadingLayout2"

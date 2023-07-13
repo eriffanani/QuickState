@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,22 +9,51 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/loadingLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        android:gravity="center_horizontal"
+        android:paddingTop="30dp">
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/act_main_btnDefault"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:text="Loading content..."
-            android:textSize="16sp"/>
+            android:text="Default"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/act_main_btnFont"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Font Style"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/act_main_btnIllustration"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Illustration"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/act_main_btnAnimated"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Animated"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/act_main_btnFull"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="17sp"
+            android:text="Full State"/>
 
     </LinearLayout>
 

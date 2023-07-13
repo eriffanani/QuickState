@@ -4,12 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/quickState2"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:src="@mipmap/error_illustration"
+    android:layout_height="match_parent"
+    android:src="@mipmap/error_illustration_quick"
     android:clipToPadding="false"
-    app:imageWidth="200dp"
-    android:title="Internet"
-    android:subtitle="@string/message_example">
+    app:imageWidth="250dp"
+    android:title="Internet Connection Lost">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,12 +20,14 @@
         android:paddingStart="5dp"
         android:paddingEnd="5dp">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@id/quickStateButtonLeft"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Left"
+            android:text="Cancel"
+            app:icon="@drawable/ic_close"
             android:tag="internet" />
 
         <View
@@ -34,28 +35,15 @@
             android:layout_height="1dp"
             android:layout_weight="1.7"/>
 
-        <RelativeLayout
+        <com.google.android.material.button.MaterialButton
             android:id="@id/quickStateButtonRight"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/bg_button"
-            android:tag="internet"
-            android:elevation="4dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="RIGHT"
-                android:textStyle="bold"
-                android:textSize="13sp"
-                android:textColor="@android:color/white"
-                android:includeFontPadding="false"
-                android:layout_centerHorizontal="true"/>
-
-        </RelativeLayout>
+            android:text="Try Again"
+            app:icon="@drawable/ic_retry"
+            android:tag="internet"/>
 
     </LinearLayout>
 

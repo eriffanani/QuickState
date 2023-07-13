@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Quick State</string>
     <string name="title_example">State Title</string>
-    <string name="message_example">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="message_example">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</string>
 </resources>
