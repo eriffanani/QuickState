@@ -1,4 +1,4 @@
-package com.erif.quickstate;
+package com.erif.quickstates;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.erif.quickstate", appContext.getPackageName());
+        assertEquals("com.erif.library.test", appContext.getPackageName());
     }
 }

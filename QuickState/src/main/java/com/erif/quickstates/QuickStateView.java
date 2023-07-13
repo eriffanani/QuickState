@@ -1,4 +1,4 @@
-package com.erif.quickstate;
+package com.erif.quickstates;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -28,6 +28,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
+
+import com.erif.quickstate.R;
 
 public class QuickStateView extends LinearLayout {
 

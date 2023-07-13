@@ -1,4 +1,4 @@
-package com.erif.quickstate;
+package com.erif.quickstates;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,6 +16,8 @@ import androidx.annotation.AnimRes;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import com.erif.quickstate.R;
 
 public class QuickState {
 

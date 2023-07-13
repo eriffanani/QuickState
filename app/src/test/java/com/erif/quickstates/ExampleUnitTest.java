@@ -1,4 +1,4 @@
-package com.erif.quickstate;
+package com.erif.quickstates;
 
 import org.junit.Test;
 
