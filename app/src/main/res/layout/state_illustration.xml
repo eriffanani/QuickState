@@ -2,18 +2,14 @@
 <com.erif.quickstates.QuickStateView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/quickState2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:srcLayout="@layout/lottie_error1"
-    app:imageWidth="200dp"
-    android:title="Data Not Found"
-    app:subtitleFontFamily="@font/montserrat"
-    android:subtitle="@string/message_example">
+    android:src="@mipmap/error_illustration_quick"
+    app:imageWidth="230dp"
+    android:title="Oops! Internal Server Error">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@id/stateButtonPrimary"
-        style="@style/MyButton.Retry.Outline.Single"
-        android:text="Retry"/>
+        android:id="@+id/stateButtonPrimary"
+        style="@style/MyButton.Retry.Outline.Single"/>
 
 </com.erif.quickstates.QuickStateView>

@@ -1,6 +1,7 @@
 package com.erif.quickstates.examples
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
@@ -11,18 +12,23 @@ import com.erif.quickstates.QuickStateView
 import com.erif.quickstates.R
 import com.erif.quickstates.helper.Constant
 import com.erif.quickstates.helper.Delay
-import java.util.Random
 
-class MainActivity2 : AppCompatActivity(), QuickState.OnClickListener {
+class ActAnimated : AppCompatActivity(), QuickState.OnClickListener {
 
     private var contentLoader: NestedScrollView? = null
     private var state: QuickState? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
-        val parentLayout: CoordinatorLayout = findViewById(R.id.parentView)
-        contentLoader = findViewById(R.id.loadingLayout2)
+        setContentView(R.layout.act_animated)
+
+        supportActionBar?.apply {
+            title = "Animated Image State"
+            setDisplayHomeAsUpEnabled(true)
+        }
+
+        val parentLayout: CoordinatorLayout = findViewById(R.id.act_animated_parentView)
+        contentLoader = findViewById(R.id.act_animated_loadingView)
         state = QuickState(parentLayout, true)
         state?.contentLoader(contentLoader)
         state?.onClickListener(this)
@@ -31,8 +37,8 @@ class MainActivity2 : AppCompatActivity(), QuickState.OnClickListener {
 
     private fun requestIllustration() {
         blinkLoading()
-        Delay(1.5) {
-            state?.show(getRandomState())
+        Delay(2) {
+            state?.show(Constant.ANIMATED)
         }
     }
 
@@ -45,28 +51,21 @@ class MainActivity2 : AppCompatActivity(), QuickState.OnClickListener {
     }
 
     override fun onClickStateButton(stateView: QuickStateView?, buttonState: Int, tag: String?) {
-        when (buttonState) {
-            QuickState.BUTTON_LEFT -> finish()
-            QuickState.BUTTON_RIGHT -> {
-                state?.hideAndShowLoader()
-                // Delay
-                Delay(0.5) {
-                    requestIllustration()
-                }
+        if (buttonState == QuickState.BUTTON_PRIMARY) {
+            state?.hideAndShowLoader()
+            // Delay
+            Delay(0.4) {
+                requestIllustration()
             }
         }
     }
 
-    private fun getRandomState(): String {
-        val arr = arrayOf(
-            Constant.NETWORK, Constant.INTERNAL
-        )
-        return arr[random()]
-    }
-
-    private fun random(): Int {
-        val rand = Random()
-        return rand.nextInt(2)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

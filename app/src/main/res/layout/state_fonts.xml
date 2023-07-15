@@ -2,17 +2,17 @@
 <com.erif.quickstates.QuickStateView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/quickState2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToPadding="false"
-    app:srcLayout="@layout/lottie_error2"
-    android:subtitle="@string/message_example"
-    app:subtitleTextSize="16sp"
+    android:title="Failed To Load Data"
+    android:titleTextColor="#673AB7"
+    app:titleFontFamily="@font/montserrat_bold"
+    android:subtitle="The server is failed to load your request data please try again."
+    android:subtitleTextColor="#2196F3"
     app:subtitleFontFamily="@font/montserrat">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@id/stateButtonPrimary"
+        android:id="@+id/stateButtonPrimary"
         style="@style/MyButton.Retry.Single"/>
 
 </com.erif.quickstates.QuickStateView>

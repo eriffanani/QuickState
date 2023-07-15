@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/act_main_parentLayout"
     tools:context=".MainActivity">
 
@@ -17,43 +16,28 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/act_main_btnDefault"
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            style="@style/MyButton"
             android:text="Default"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/act_main_btnFont"
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            style="@style/MyButton.Margin"
             android:text="Font Style"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/act_main_btnIllustration"
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            style="@style/MyButton.Margin"
             android:text="Illustration"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/act_main_btnAnimated"
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            style="@style/MyButton.Margin"
             android:text="Animated"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/act_main_btnFull"
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:textSize="17sp"
-            android:text="Full State"/>
+            style="@style/MyButton.Margin"
+            android:text="Full States"/>
 
     </LinearLayout>
 

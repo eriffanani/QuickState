@@ -10,10 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuickState">
         <activity
+            android:name=".examples.ActFullState"
+            android:exported="false" />
+        <activity
+            android:name=".examples.ActFonts"
+            android:exported="false" />
+        <activity
+            android:name=".examples.ActDefault"
+            android:exported="false" />
+        <activity
             android:name=".examples.ActImage"
             android:exported="false" />
         <activity
-            android:name=".examples.MainActivity2"
+            android:name=".examples.ActAnimated"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

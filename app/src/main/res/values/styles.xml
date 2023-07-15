@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyButton" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:layout_width">170dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="MyButton.Margin" parent="MyButton">
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <style name="MyButton.Retry" parent="Widget.Material3.Button.ElevatedButton.Icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="icon">@drawable/ic_retry</item>
+        <item name="android:text">Try Again</item>
+    </style>
+
+    <style name="MyButton.Retry.Outline" parent="Widget.Material3.Button.OutlinedButton.Icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="icon">@drawable/ic_retry</item>
+        <item name="android:text">Try Again</item>
+    </style>
+
+    <style name="MyButton.Retry.Single" parent="MyButton.Retry">
+        <item name="android:layout_marginTop">25dp</item>
+    </style>
+
+    <style name="MyButton.Retry.Outline.Single" parent="MyButton.Retry.Outline">
+        <item name="android:layout_marginTop">25dp</item>
+    </style>
+
+    <style name="CircleProgress">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:indeterminate">true</item>
+        <item name="trackCornerRadius">15dp</item>
+    </style>
+
+    <style name="TextLoading">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:text">Loading your data...</item>
+    </style>
+
+</resources>

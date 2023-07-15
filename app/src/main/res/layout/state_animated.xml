@@ -5,15 +5,14 @@
     android:id="@+id/quickState2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:srcLayout="@layout/lottie_error1"
-    app:imageWidth="200dp"
-    android:title="Data Not Found"
-    app:subtitleFontFamily="@font/montserrat"
-    android:subtitle="@string/message_example">
+    android:clipToPadding="false"
+    app:srcLayout="@layout/lottie_error3"
+    android:subtitle="@string/message_example"
+    app:subtitleTextSize="16sp"
+    app:subtitleFontFamily="@font/montserrat">
 
     <com.google.android.material.button.MaterialButton
         android:id="@id/stateButtonPrimary"
-        style="@style/MyButton.Retry.Outline.Single"
-        android:text="Retry"/>
+        style="@style/MyButton.Retry.Single"/>
 
 </com.erif.quickstates.QuickStateView>

@@ -1,47 +1,50 @@
 package com.erif.quickstates.examples
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.LinearLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.erif.quickstates.QuickState
 import com.erif.quickstates.QuickStateView
 import com.erif.quickstates.R
 import com.erif.quickstates.helper.Constant
 import com.erif.quickstates.helper.Delay
 
-class ActImage : AppCompatActivity(), QuickState.OnClickListener {
+class ActDefault : AppCompatActivity(), QuickState.OnClickListener {
 
+    private var contentView: LinearLayout? = null
     private var state: QuickState? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.act_illustration)
+        setContentView(R.layout.act_default)
 
         supportActionBar?.apply {
-            title = "Image Illustration State"
+            title = "Default State"
             setDisplayHomeAsUpEnabled(true)
         }
 
-        val parentView: CoordinatorLayout = findViewById(R.id.act_illustration_parentView)
+        val parentView: ConstraintLayout = findViewById(R.id.act_default_parentView)
         state = QuickState(parentView, true)
         state?.onClickListener(this)
-        val contentLoader = findViewById<LinearLayout>(R.id.act_illustration_loader)
-        state?.contentLoader(contentLoader)
-        loadingData()
+
+        contentView = findViewById(R.id.act_default_contentView)
+        state?.contentLoader(contentView)
+
+        loadData()
 
     }
 
-    private fun loadingData() {
-        Delay(2) {
-            state?.show(Constant.ILLUSTRATION)
+    private fun loadData() {
+        Delay(2.5) {
+            state?.show(Constant.DEFAULT)
         }
     }
 
     override fun onClickStateButton(stateView: QuickStateView?, buttonState: Int, tag: String?) {
-        state?.hideAndShowLoader()
-        loadingData()
+        stateView?.hideAndShowLoader()
+        loadData()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

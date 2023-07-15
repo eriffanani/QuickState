@@ -4,27 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/act_main_parentLayout"
+    android:id="@+id/act_illustration_parentView"
     tools:context=".examples.ActImage">
 
     <LinearLayout
-        android:id="@+id/loadingLayout"
+        android:id="@+id/act_illustration_loader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         android:layout_gravity="center">
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            style="@style/CircleProgress"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Loading content..."
-            android:textSize="16sp"/>
+            style="@style/TextLoading"/>
 
     </LinearLayout>
 

@@ -5,10 +5,11 @@
     android:id="@+id/quickState2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:src="@mipmap/error_illustration_quick"
-    android:clipToPadding="false"
-    app:imageWidth="250dp"
-    android:title="Internet Connection Lost">
+    app:srcLayout="@layout/lottie_error_internet"
+    android:title="Internet Connection Lost"
+    app:titleFontFamily="@font/montserrat_bold"
+    android:subtitle="@string/message_example"
+    app:subtitleTextSize="16sp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,10 +22,9 @@
         android:paddingEnd="5dp">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@id/quickStateButtonLeft"
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:id="@id/stateButtonSecondary"
+            style="@style/MyButton.Retry"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Cancel"
             app:icon="@drawable/ic_close"
@@ -36,13 +36,10 @@
             android:layout_weight="1.7"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@id/quickStateButtonRight"
-            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:id="@id/stateButtonPrimary"
+            style="@style/MyButton.Retry.Outline"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Try Again"
-            app:icon="@drawable/ic_retry"
             android:tag="internet"/>
 
     </LinearLayout>

@@ -31,11 +31,10 @@ public class QuickState {
     private boolean enableAnimation = false;
     private View viewState;
 
-    public static final int BUTTON_SINGLE = 1;
-    public static final int BUTTON_LEFT = 2;
-    public static final int BUTTON_TOP = 3;
-    public static final int BUTTON_RIGHT = 4;
-    public static final int BUTTON_BOTTOM = 5;
+    public static final int BUTTON_PRIMARY = 1;
+    public static final int BUTTON_SECONDARY = 2;
+    public static final int BUTTON_TERTIARY = 3;
+    public static final int BUTTON_QUATERNARY = 4;
     private String currentState;
 
     public QuickState(RelativeLayout parentLayout) {
@@ -122,24 +121,19 @@ public class QuickState {
             viewState.setId(R.id.quickStateContainer);
             if (viewState instanceof QuickStateView)
                 stateView = (QuickStateView) viewState;
-            setupButton(viewState, R.id.quickStateButtonSingle);
-            setupButton(viewState, R.id.quickStateButtonLeft);
-            setupButton(viewState, R.id.quickStateButtonTop);
-            setupButton(viewState, R.id.quickStateButtonRight);
-            setupButton(viewState, R.id.quickStateButtonBottom);
+            setupButton(viewState, R.id.stateButtonPrimary);
+            setupButton(viewState, R.id.stateButtonSecondary);
+            setupButton(viewState, R.id.stateButtonTertiary);
+            setupButton(viewState, R.id.stateButtonQuaternary);
 
             if (stateView != null) {
-                if (parentLayout instanceof RelativeLayout) {
-                    RelativeLayout relative = (RelativeLayout) parentLayout;
+                if (parentLayout instanceof RelativeLayout relative) {
                     relative.addView(viewState, 0);
-                } else if (parentLayout instanceof ConstraintLayout) {
-                    ConstraintLayout constraint = (ConstraintLayout) parentLayout;
+                } else if (parentLayout instanceof ConstraintLayout constraint) {
                     constraint.addView(viewState, 0);
-                } else if (parentLayout instanceof CoordinatorLayout) {
-                    CoordinatorLayout coordinator = (CoordinatorLayout) parentLayout;
+                } else if (parentLayout instanceof CoordinatorLayout coordinator) {
                     coordinator.addView(viewState, 0);
-                } else if (parentLayout instanceof FrameLayout) {
-                    FrameLayout frame = (FrameLayout) parentLayout;
+                } else if (parentLayout instanceof FrameLayout frame) {
                     frame.addView(viewState, 0);
                 }
                 if (contentLoader != null)
@@ -185,16 +179,14 @@ public class QuickState {
                 Object getTag = button.getTag();
                 if (listener != null) {
                     int state = 0;
-                    if (id == R.id.quickStateButtonSingle) {
-                        state = BUTTON_SINGLE;
-                    } else if (id == R.id.quickStateButtonLeft) {
-                        state = BUTTON_LEFT;
-                    } else if (id == R.id.quickStateButtonTop) {
-                        state = BUTTON_TOP;
-                    } else if (id == R.id.quickStateButtonRight) {
-                        state = BUTTON_RIGHT;
-                    } else if (id == R.id.quickStateButtonBottom) {
-                        state = BUTTON_BOTTOM;
+                    if (id == R.id.stateButtonPrimary) {
+                        state = BUTTON_PRIMARY;
+                    } else if (id == R.id.stateButtonSecondary) {
+                        state = BUTTON_SECONDARY;
+                    } else if (id == R.id.stateButtonTertiary) {
+                        state = BUTTON_TERTIARY;
+                    } else if (id == R.id.stateButtonQuaternary) {
+                        state = BUTTON_QUATERNARY;
                     }
                     String tag = null;
                     if (getTag != null)
