@@ -14,6 +14,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@id/stateButtonPrimary"
         style="@style/MyButton.Retry.Outline.Single"
-        android:text="Retry"/>
+        android:layout_width="170dp"
+        android:text="Reload"/>
 
 </com.erif.quickstates.QuickStateView>

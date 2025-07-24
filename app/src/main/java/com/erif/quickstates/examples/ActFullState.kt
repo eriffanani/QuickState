@@ -91,6 +91,8 @@ class ActFullState : AppCompatActivity(), QuickState.OnClickListener {
             Delay(0.4) {
                 loadingData()
             }
+        } else if (buttonState == QuickState.BUTTON_SECONDARY) {
+            finish()
         }
     }
 

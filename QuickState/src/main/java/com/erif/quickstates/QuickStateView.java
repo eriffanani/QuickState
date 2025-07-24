@@ -216,7 +216,7 @@ public class QuickStateView extends LinearLayout {
 
     public void showWithAnim() {
         Animation animState = new AlphaAnimation(0f, 1f);
-        animState.setDuration(500);
+        animState.setDuration(400);
         setVisibility(VISIBLE);
         animState.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -224,7 +224,7 @@ public class QuickStateView extends LinearLayout {
                 if (contentView != null && contentView.getVisibility() == VISIBLE) {
                     contentView.clearAnimation();
                     Animation animContent = new AlphaAnimation(1f, 0f);
-                    animContent.setDuration(400);
+                    animContent.setDuration(300);
                     if (contentView != null) {
                         animContent.setAnimationListener(new Animation.AnimationListener() {
                             @Override
@@ -242,7 +242,7 @@ public class QuickStateView extends LinearLayout {
                 if (contentLoader != null && contentLoader.getVisibility() == VISIBLE) {
                     contentLoader.clearAnimation();
                     Animation animLoader = new AlphaAnimation(1f, 0f);
-                    animLoader.setDuration(400);
+                    animLoader.setDuration(300);
                     if (contentLoader != null) {
                         animLoader.setAnimationListener(new Animation.AnimationListener() {
                             @Override
@@ -352,7 +352,7 @@ public class QuickStateView extends LinearLayout {
                         if (contentLoader != null && contentLoader.getVisibility() != VISIBLE) {
                             contentLoader.setVisibility(VISIBLE);
                             Animation animLoader = new AlphaAnimation(0f, 1f);
-                            animLoader.setDuration(500);
+                            animLoader.setDuration(400);
                             contentLoader.startAnimation(animLoader);
                         }
                     }

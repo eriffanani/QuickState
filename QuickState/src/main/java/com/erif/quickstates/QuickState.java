@@ -92,17 +92,13 @@ public class QuickState {
         } else {
             if (!currentState.equals(name)) {
                 this.currentState = name;
-                if (parentLayout instanceof RelativeLayout) {
-                    RelativeLayout relative = (RelativeLayout) parentLayout;
+                if (parentLayout instanceof RelativeLayout relative) {
                     relative.removeView(viewState);
-                } else if (parentLayout instanceof ConstraintLayout) {
-                    ConstraintLayout constraint = (ConstraintLayout) parentLayout;
+                } else if (parentLayout instanceof ConstraintLayout constraint) {
                     constraint.removeView(viewState);
-                } else if (parentLayout instanceof CoordinatorLayout) {
-                    CoordinatorLayout coordinator = (CoordinatorLayout) parentLayout;
+                } else if (parentLayout instanceof CoordinatorLayout coordinator) {
                     coordinator.removeView(viewState);
-                } else if (parentLayout instanceof FrameLayout) {
-                    FrameLayout frame = (FrameLayout) parentLayout;
+                } else if (parentLayout instanceof FrameLayout frame) {
                     frame.removeView(viewState);
                 }
                 createState(name);
@@ -128,13 +124,13 @@ public class QuickState {
 
             if (stateView != null) {
                 if (parentLayout instanceof RelativeLayout relative) {
-                    relative.addView(viewState, 0);
+                    relative.addView(viewState);
                 } else if (parentLayout instanceof ConstraintLayout constraint) {
-                    constraint.addView(viewState, 0);
+                    constraint.addView(viewState);
                 } else if (parentLayout instanceof CoordinatorLayout coordinator) {
-                    coordinator.addView(viewState, 0);
+                    coordinator.addView(viewState);
                 } else if (parentLayout instanceof FrameLayout frame) {
-                    frame.addView(viewState, 0);
+                    frame.addView(viewState);
                 }
                 if (contentLoader != null)
                     stateView.contentLoader(contentLoader);
